@@ -10,17 +10,18 @@ import javax.persistence.Id;
 public class PizzaDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Integer pizzaId;
     private String name;
     private String description;
     private Double price;
+    private String imgurl;
 
-    public Integer getId() {
-        return id;
+    public Integer getPizzaId() {
+        return pizzaId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPizzaId(Integer pizzaId) {
+        this.pizzaId = pizzaId;
     }
 
     public String getName() {
@@ -46,4 +47,13 @@ public class PizzaDetails {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
 }
+
