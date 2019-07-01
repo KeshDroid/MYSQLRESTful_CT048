@@ -1,15 +1,12 @@
 package pizzaloop;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-
-public interface CartRepository extends CrudRepository<CartOne, String> {
-
-    List<CartOne> findByPizName (String pName);
-    List<CartOne> deleteByPizName (String pName);
-
+public interface CartRepository extends CrudRepository <Cart, String>{
+    List<Cart> findByPizName (String pizName);
+    List<Cart> deleteByPizName (String pizName);
 }

@@ -1,4 +1,4 @@
-/*package pizzaloop;
+package pizzaloop;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,12 +8,21 @@ import javax.persistence.Id;
 @Entity
 public class Cart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
 
-    private String pizName;
-    private Integer qty;
-    private Double price;
-    private Double tot;
+    private  Integer id;
+    private  String pizName;
+    private  Double cPrice;
+    private  Integer qty;
+    private  Double total;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPizName() {
         return pizName;
@@ -21,6 +30,14 @@ public class Cart {
 
     public void setPizName(String pizName) {
         this.pizName = pizName;
+    }
+
+    public Double getcPrice() {
+        return cPrice;
+    }
+
+    public void setcPrice(Double cPrice) {
+        this.cPrice = cPrice;
     }
 
     public Integer getQty() {
@@ -31,19 +48,11 @@ public class Cart {
         this.qty = qty;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setTotal(Double total) {
+        this.total = total;
     }
-
-    public Double getTot() {
-        return tot;
-    }
-
-    public void setTot(Double tot) {
-        this.tot = tot;
-    }
-}*/
+}

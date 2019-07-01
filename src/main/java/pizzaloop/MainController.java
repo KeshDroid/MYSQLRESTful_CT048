@@ -34,9 +34,7 @@ public class MainController {
     @GetMapping(path = "/cartall")
 
     public @ResponseBody
-    Iterable<CartOne> getCartOne() {
-        return cartRepository.findAll();
-    }
+    Iterable<Cart> getCart() { return cartRepository.findAll(); }
 
 
     /* #Read Operation
@@ -65,8 +63,8 @@ public class MainController {
 
     @GetMapping(path = "findByPizName")
     public @ResponseBody
-    List<CartOne> getCartBypName(@RequestParam String pName) {
-        return cartRepository.findByPizName(pName);
+    List<Cart> getCartByPizName(@RequestParam String pizName) {
+        return cartRepository.findByPizName(pizName);
     }
 
 
@@ -96,16 +94,24 @@ public class MainController {
         return SUCCESS;
     }
 
+
+    /*  #Create Operation
+        #URI to access this: http://localhost:8080/demo/addcart?pizName=VegiPizza*/
+
     @GetMapping(path = "/addcart")
 
     public @ResponseBody
-    String addNewCart(@RequestParam String pizName, @RequestParam Double price, @RequestParam Double total, @RequestParam Integer qty) {
-        CartOne cartOne = new CartOne();
-        cartOne.setPizName(pizName);
-        cartOne.setPrice(price);
-        cartOne.setTotal(total);
-        cartOne.setQty(qty);
-        cartRepository.save(cartOne);
+    String addNewCart(@RequestParam String pizName, @RequestParam Double cPrice, @RequestParam Integer qty, @RequestParam Double total) {
+       // System.out.println(pizName);
+        //CartOne cartOne = new CartOne();
+       // cartOne.setPizName(pizName);
+
+        Cart cart = new Cart();
+        cart.setPizName(pizName);
+        cart.setcPrice(cPrice);
+        cart.setQty(qty);
+        cart.setTotal(total);
+        cartRepository.save(cart);
         return SUCCESS;
     }
 
@@ -137,8 +143,8 @@ public class MainController {
 
     @GetMapping(path = "/deleteByPizName")
     public @ResponseBody
-    List<CartOne> deletePizByName(@RequestParam String pName) {
-        return cartRepository.deleteByPizName(pName);
+    List<Cart> deletePizByName(@RequestParam String pizName) {
+        return cartRepository.deleteByPizName(pizName);
     }
 
 
@@ -175,20 +181,21 @@ public class MainController {
 
     @GetMapping(path = "/updatecart")
     public @ResponseBody
-    List<CartOne> updateCartOne(@RequestParam String pizName, @RequestParam Double price, @RequestParam Double total, @RequestParam Integer qty) {
+    List<Cart> updateCartOne(@RequestParam String pizName, @RequestParam Double cPrice, @RequestParam Integer qty, @RequestParam Double total) {
 
-        List<CartOne> cartOneList = cartRepository.findByPizName(pizName);
-        if (!cartOneList.isEmpty()) {
+        List<Cart> cartDetailsList = cartRepository.findByPizName(pizName);
+        if (!cartDetailsList.isEmpty()) {
 
-            for (CartOne cartOne : cartOneList) {
-                cartOne.setPizName(pizName);
-                cartOne.setPrice(price);
-                cartOne.setTotal(total);
-                cartOne.setQty(qty);
-                cartRepository.save(cartOne);
+            for (Cart cartDetails: cartDetailsList){
+                cartDetails.setPizName(pizName);
+                cartDetails.setcPrice(cPrice);
+                cartDetails.setQty(qty);
+                cartDetails.setTotal(total);
+                cartRepository.save(cartDetails);
+
             }
         }
-        return cartRepository.deleteByPizName(pizName);
+        return cartRepository.findByPizName(pizName);
     }
 }
 
