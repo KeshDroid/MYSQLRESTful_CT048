@@ -37,21 +37,6 @@ public class MainController {
     Iterable<Cart> getCart() { return cartRepository.findAll(); }
 
 
-    /* #Read Operation
-     #URI to access this: http://localhost:8080/demo/cart*/
-   /* @GetMapping(path="/cart")
-
-    public @ResponseBody
-    Iterable<Cart> getCart() {
-        return cartRepository.findAll();
-    }*/
-
-
-
-
-
-
-
     /*  #Read Operation based on Pizza Id
         #URI to access this: http://localhost:8080/demo/findByPizzaId?id=2 */
 
@@ -66,17 +51,6 @@ public class MainController {
     List<Cart> getCartByPizName(@RequestParam String pizName) {
         return cartRepository.findByPizName(pizName);
     }
-
-
-
-     /*  #Read Operation based on Pizza Id
-        #URI to access this: http://localhost:8080/demo/qtyGetByPizzaId?id=2 */
-
-  /*  @GetMapping(path="/qtyGetByPizName")
-    public @ResponseBody
-    List<Cart> qtyGetPizzaById(@RequestParam String pizName) {
-        return cartRepository.qtyGetByPizName(pizName);
-    }*/
 
 
 
@@ -115,21 +89,6 @@ public class MainController {
         return SUCCESS;
     }
 
-    /*  #Create Operation
-        #URI to access this: http://localhost:8080/demo/add?name=VegiPizza&description=VegiSupreme&price=2500.75 */
-
-  /*  @GetMapping(path="/qtyAdd")
-    public @ResponseBody String addNewItem(@RequestParam Integer qty, @RequestParam Double tot, @RequestParam Double price) {
-        Cart cart = new Cart();
-        cart.setQty(qty);
-        cart.setPrice(price);
-        cart.setTot(tot);
-        cartRepository.save(cart);
-        return SUCCESS;
-    }*/
-
-
-
 
 
     /*  #Delete Operation
@@ -141,20 +100,13 @@ public class MainController {
         return pizzaRepository.deleteByPizzaId(id);
     }
 
+    /*  #Delete Operation
+       #URI to access this: http://localhost:8080/demo/deleteByPizName?pizName=kakss */
     @GetMapping(path = "/deleteByPizName")
     public @ResponseBody
-    List<Cart> deletePizByName(@RequestParam String pizName) {
+    List<Cart> deleteByPizName(@RequestParam String pizName) {
         return cartRepository.deleteByPizName(pizName);
     }
-
-
-     /*  #Delete Operation
-        #URI to access this: http://localhost:8080/demo/qtyDeleteByPizzaId?id=2 */
-
-  /*  @GetMapping(path="/qtydeleteByPizzaId")
-    public @ResponseBody List<Cart> qtyDeletePizName(@RequestParam String pizName) {
-        return cartRepository.qtyDeleteByPizName(pizName);
-    }*/
 
 
 
@@ -178,7 +130,8 @@ public class MainController {
         return pizzaRepository.findByPizzaId(id);
     }
 
-
+    /*  #Update operation
+       # URI to access this: http://localhost:8080/demo/updatecart?pizName=vegi */
     @GetMapping(path = "/updatecart")
     public @ResponseBody
     List<Cart> updateCartOne(@RequestParam String pizName, @RequestParam Double cPrice, @RequestParam Integer qty, @RequestParam Double total) {
@@ -204,26 +157,7 @@ public class MainController {
 
 
 
-/*
-    @GetMapping(path="/qtyAdd")
-    public @ResponseBody
-    List<Cart> updateCart(@RequestParam String pizName , @RequestParam Integer qty, @RequestParam Double tot, @RequestParam Double price) {
 
-        List <Cart> cartList = cartRepository.qtyGetByPizName(pizName);
-        if(!cartList.isEmpty()) {
-
-            for(Cart cart: cartList) {
-                cart.setQty(qty);
-                cart.setPrice(price);
-                cart.setTot(tot);
-
-                cartRepository.save(cart);
-            }
-        } return cartRepository.qtyGetByPizName(pizName);
-
-
-
-    }*/
 
 
 
